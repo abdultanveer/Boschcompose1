@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Boschcompose1</string>
+    <string name="greeting">happy birthday emma</string>
+    <string name="from">bosch</string>
 </resources>

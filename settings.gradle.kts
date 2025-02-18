@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Boschcompose1"
 include(":app")
+include(":app:lib")
