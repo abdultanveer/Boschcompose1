@@ -1,16 +1,11 @@
 package com.example.boschcompose1.kotlinexs
 
 import com.example.boschcompose1.Address
-import com.example.boschcompose1.Student
 
 fun main() {
     var numberOfBooks: Int
     //= "good brake"
-    var abdul = Student("abdul",123,Address())
-    var ansari = Student("abdul",123,Address())
 
-    println(abdul==ansari)
-    println(abdul===ansari)
 
     var length = 2.5
     var len = 10
