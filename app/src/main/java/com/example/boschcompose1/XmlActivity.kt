@@ -1,6 +1,7 @@
 package com.example.boschcompose1
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -29,5 +30,10 @@ class XmlActivity : AppCompatActivity() {
         intent.putExtra("name","abdul")
         startActivity(intent)
 
+    }
+
+    fun startDialer(view: View) {
+        var dIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:123456789"))
+        startActivity(dIntent)
     }
 }
