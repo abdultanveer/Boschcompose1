@@ -1,8 +1,13 @@
 package com.example.boschcompose1
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.AlarmClock
+import android.provider.ContactsContract
+import android.provider.ContactsContract.CommonDataKinds.Phone
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -32,6 +37,8 @@ import androidx.compose.ui.unit.dp
 import com.example.boschcompose1.ui.theme.Boschcompose1Theme
 
 class DiceRollerActivity : ComponentActivity() {
+     val REQUEST_SELECT_CONTACT = 1
+     val REQUEST_SELECT_PHONE_NUMBER = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +79,8 @@ class DiceRollerActivity : ComponentActivity() {
                 Text(stringResource(R.string.roll))
             }
             Button(onClick = {
-                startTimer("android",60)
+               // startTimer("android",60)
+                selectContact()
             }) {
                 Text(text = "launchCalendar")
 
@@ -90,6 +98,37 @@ class DiceRollerActivity : ComponentActivity() {
             startActivity(intent)
        // }
     }
+
+    fun selectContact() {
+        val intent = Intent(Intent.ACTION_PICK).apply {
+            type = ContactsContract.Contacts.CONTENT_TYPE
+        }
+     //   if (intent.resolveActivity(packageManager) != null) {
+            startActivityForResult(intent, REQUEST_SELECT_CONTACT)
+       // }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) { if (requestCode == REQUEST_SELECT_PHONE_NUMBER && resultCode == Activity.RESULT_OK) {
+        // Get the URI and query the content provider for the phone number.
+        val contactUri: Uri = data?.data!!  //url --pointing to the db table containing contacts
+        val projection: Array<String> = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
+        contentResolver.query(contactUri, projection, null, null, null).use { cursor ->
+            // If the cursor returned is valid, get the phone number.
+            if (cursor!!.moveToFirst()) {
+                val numberIndex = cursor?.getColumnIndex(Phone.NUMBER)
+
+                val number = cursor?.getString(numberIndex!!)
+                // Do something with the phone number.
+                Log.i("diceroller","phno="+number)
+
+            }
+        }
+    }
+    }
+
+
+
+
 
     @Preview
     @Composable
