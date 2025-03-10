@@ -9,17 +9,16 @@ import android.provider.ContactsContract
 import android.provider.ContactsContract.CommonDataKinds.Phone
 import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,10 +30,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.boschcompose1.ui.theme.Boschcompose1Theme
 
 class DiceRollerActivity : ComponentActivity() {
      val REQUEST_SELECT_CONTACT = 1
@@ -63,7 +60,6 @@ class DiceRollerActivity : ComponentActivity() {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
-        val context = LocalContext.current
 
         Column (
             modifier = modifier,
@@ -86,7 +82,34 @@ class DiceRollerActivity : ComponentActivity() {
                 Text(text = "launchCalendar")
 
             }
+            ButtonClickExample()
+
         }
+    }
+
+    @Composable
+    fun ButtonClickExample(){
+        val context = LocalContext.current
+
+        var resultText by remember {
+            mutableStateOf("no result yet")
+        }
+        var launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) {
+            activityResult ->  if(activityResult.resultCode == RESULT_OK){
+                val data = activityResult.data?.getStringExtra("pn")
+            resultText = data ?: "no data"
+            }
+
+        }
+
+        Button(onClick = {
+            val cIntent = Intent(context,ContactActivity::class.java)
+            launcher.launch(cIntent)
+        }) {
+            Text(text = "startactivityforresult")
+        }
+        Text(text = resultText)
+
     }
 
     fun startTimer(message: String, seconds: Int) {
