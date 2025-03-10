@@ -1,5 +1,6 @@
 package com.example.boschcompose1
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -19,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -72,6 +75,7 @@ fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) 
 
 @Composable
 fun GreetingText(message: String,from:String, modifier: Modifier = Modifier) {
+
     Column(modifier = modifier.padding(8.dp),
         verticalArrangement = Arrangement.Center) {
         Text(text = message, fontSize = 100.sp,
@@ -81,6 +85,12 @@ fun GreetingText(message: String,from:String, modifier: Modifier = Modifier) {
             modifier = Modifier
                 .padding(16.dp)
                 .align(alignment = Alignment.End) )
+        Button(onClick = {
+            val resIntent = Intent().putExtra("pn","12345678")
+
+        }) {
+
+        }
     }
 }
 

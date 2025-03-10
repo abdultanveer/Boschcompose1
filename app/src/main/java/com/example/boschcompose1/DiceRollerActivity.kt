@@ -103,7 +103,7 @@ class DiceRollerActivity : ComponentActivity() {
         }
 
         Button(onClick = {
-            val cIntent = Intent(context,ContactActivity::class.java)
+            val cIntent = Intent(context,MainActivity::class.java)
             launcher.launch(cIntent)
         }) {
             Text(text = "startactivityforresult")
