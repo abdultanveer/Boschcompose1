@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.provider.AlarmClock
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -15,10 +16,14 @@ import com.google.android.material.snackbar.Snackbar
 
 class XmlActivity : AppCompatActivity() {
     var TAG = XmlActivity::class.java.simpleName
+    var requestCodeContact = 123
+    var requestCodePhot = 123
+    lateinit var tvResult:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_xml)
+        tvResult = findViewById(R.id.tvResult)
 
     }
 
@@ -51,5 +56,26 @@ class XmlActivity : AppCompatActivity() {
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         }
+    }
+
+    fun getContact(view: View) {
+        //xml activity is  a parent and contactactivity is the child
+        var cIntent = Intent(this,ContactActivity::class.java)
+        startActivityForResult(cIntent,requestCodeContact)
+    //in wa from the same activity you can go to diff  apps ie contacts/camera/location
+        //when you return back, how can wa activity differentiate b/w what kind of data you're bringing.. you return back to the same point ie line no 64
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, resintent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, resintent)
+
+        //what was the request code -- with what kind of data you're returning
+        if(requestCode == requestCodeContact && resultCode == RESULT_OK){
+
+            var phno = resintent?.getStringExtra("pn")
+            tvResult.text = phno
+        }
+
+
     }
 }

@@ -41,6 +41,7 @@ class DiceRollerActivity : ComponentActivity() {
      val REQUEST_SELECT_PHONE_NUMBER = 1
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        // enableEdgeToEdge()
@@ -111,7 +112,7 @@ class DiceRollerActivity : ComponentActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) { if (requestCode == REQUEST_SELECT_PHONE_NUMBER && resultCode == Activity.RESULT_OK) {
         // Get the URI and query the content provider for the phone number.
         val contactUri: Uri = data?.data!!  //url --pointing to the db table containing contacts
-        val projection: Array<String> = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
+        val projection: Array<String> = arrayOf(Phone.NUMBER)
         contentResolver.query(contactUri, projection, null, null, null).use { cursor ->
             // If the cursor returned is valid, get the phone number.
             if (cursor!!.moveToFirst()) {
