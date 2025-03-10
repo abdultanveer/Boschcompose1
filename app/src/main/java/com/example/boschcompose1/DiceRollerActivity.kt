@@ -1,6 +1,8 @@
 package com.example.boschcompose1
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.AlarmClock
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -21,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role.Companion.Image
@@ -52,6 +55,7 @@ class DiceRollerActivity : ComponentActivity() {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
+        val context = LocalContext.current
 
         Column (
             modifier = modifier,
@@ -67,9 +71,25 @@ class DiceRollerActivity : ComponentActivity() {
             Button(onClick = {result = (1..6).random() }) {
                 Text(stringResource(R.string.roll))
             }
+            Button(onClick = {
+                startTimer("android",60)
+            }) {
+                Text(text = "launchCalendar")
+
+            }
         }
     }
 
+    fun startTimer(message: String, seconds: Int) {
+        val intent = Intent(AlarmClock.ACTION_SET_TIMER).apply {
+            putExtra(AlarmClock.EXTRA_MESSAGE, message)
+            putExtra(AlarmClock.EXTRA_LENGTH, seconds)
+            putExtra(AlarmClock.EXTRA_SKIP_UI, true)
+        }
+        //if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+       // }
+    }
 
     @Preview
     @Composable
