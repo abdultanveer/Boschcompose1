@@ -26,6 +26,7 @@ class XmlActivity : AppCompatActivity() {
         Snackbar.make(view,"button clicked",Snackbar.LENGTH_SHORT).show()
         Log.i(TAG,"in clickhandler")
         var intent = Intent(this,MainActivity::class.java)
+        intent.putExtra("name","abdul")
         startActivity(intent)
 
     }

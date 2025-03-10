@@ -31,6 +31,7 @@ import com.example.boschcompose1.ui.theme.Boschcompose1Theme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+       var name =  intent.extras?.getString("name")
         setContent {
             Boschcompose1Theme {
                 Surface(
@@ -39,7 +40,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     GreetingImage(
                         message = "Happy Birthday Sam!",
-                        from = "From Emma"
+                        from = "From "+name
                     )
                 }
             }

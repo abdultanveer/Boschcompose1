@@ -2,4 +2,6 @@
     <string name="app_name">Boschcompose1</string>
     <string name="greeting">happy birthday emma</string>
     <string name="from">bosch</string>
+    <string name="title_activity_dice_roller">DiceRollerActivity</string>
+    <string name="roll">roll</string>
 </resources>
