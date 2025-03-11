@@ -39,7 +39,7 @@ class XmlActivity : AppCompatActivity() {
     }
 
     fun startDialer(view: View) {
-//        var dIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:123456789"))
+//       var dIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:123456789"))
 //        startActivity(dIntent)
 
         createAlarm("bosch",9,48)
@@ -78,4 +78,18 @@ class XmlActivity : AppCompatActivity() {
 
 
     }
+
+    fun launchCalendar(view: View) {
+        var calIntent = Intent("ineed.water")
+        startActivity(calIntent)
+    }
 }
+
+//<activity   Manifest of other app
+//android:name=".CalendarActivity"
+//android:exported="true" >
+//<intent-filter>
+//<action android:name="ineed.water"/>
+// <category android:name="android.intent.category.DEFAULT"/>
+//</intent-filter>
+//</activity>
