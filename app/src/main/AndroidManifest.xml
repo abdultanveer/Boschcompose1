@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
-
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,12 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Boschcompose1"
         tools:targetApi="31">
+        <receiver
+            android:name=".SmsReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".BottomNavActivity"
             android:exported="true"
-            android:label="@string/title_activity_bottom_nav" >
-
-        </activity>
+            android:label="@string/title_activity_bottom_nav"></activity>
         <activity
             android:name=".ContactActivity"
             android:exported="false" />
@@ -27,9 +36,7 @@
             android:name=".DiceRollerActivity"
             android:exported="true"
             android:label="@string/title_activity_dice_roller"
-            android:theme="@style/Theme.Boschcompose1">
-
-        </activity>
+            android:theme="@style/Theme.Boschcompose1"></activity>
         <activity
             android:name=".XmlActivity"
             android:exported="true">
