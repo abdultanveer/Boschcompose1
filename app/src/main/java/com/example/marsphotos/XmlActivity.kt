@@ -102,6 +102,7 @@ class XmlActivity : AppCompatActivity() {
 
     fun startAidlservice(view: View) {
             //aidl-4
+        val intent = Intent("ineed.addition.bosch")
         val pack = IMyAidlInterface::class.java.`package`
         intent.setPackage(pack.toString())
         intent.setPackage(pack.name)
