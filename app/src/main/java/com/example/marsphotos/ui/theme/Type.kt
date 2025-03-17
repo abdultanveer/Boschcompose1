@@ -1,4 +1,4 @@
-package com.example.boschcompose1.ui.theme
+package com.example.marsphotos.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package com.example.boschcompose1
+package com.example.marsphotos
 
 import android.app.Activity
 import android.content.Intent
@@ -32,6 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.boschcompose1.R
 
 class DiceRollerActivity : ComponentActivity() {
      val REQUEST_SELECT_CONTACT = 1
@@ -103,7 +104,7 @@ class DiceRollerActivity : ComponentActivity() {
         }
 
         Button(onClick = {
-            val cIntent = Intent(context,MainActivity::class.java)
+            val cIntent = Intent(context, MainActivity::class.java)
             launcher.launch(cIntent)
         }) {
             Text(text = "startactivityforresult")

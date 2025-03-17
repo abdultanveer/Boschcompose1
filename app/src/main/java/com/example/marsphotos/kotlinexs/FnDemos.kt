@@ -1,6 +1,4 @@
-package com.example.boschcompose1.kotlinexs
-
-import com.example.boschcompose1.Address
+package com.example.marsphotos.kotlinexs
 
 fun main() {
     var numberOfBooks: Int

@@ -1,8 +1,11 @@
-package com.example.boschcompose1
+package com.example.marsphotos
 
+import android.content.ComponentName
 import android.content.Intent
+import android.content.ServiceConnection
 import android.net.Uri
 import android.os.Bundle
+import android.os.IBinder
 import android.provider.AlarmClock
 import android.util.Log
 import android.view.View
@@ -12,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.boschcompose1.R
 import com.google.android.material.snackbar.Snackbar
 
 class XmlActivity : AppCompatActivity() {
@@ -20,6 +24,8 @@ class XmlActivity : AppCompatActivity() {
     var requestCodePhot = 123
     lateinit var tvResult:TextView
 
+   // var iRemoteService: IMyAidlInterface? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_xml)
@@ -27,12 +33,22 @@ class XmlActivity : AppCompatActivity() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+       // registerReceiver()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        //unregisterReceiver()
+    }
+
     fun clickHandler(view: View) {
         var view:ConstraintLayout = findViewById(R.id.conslayout)
 
         Snackbar.make(view,"button clicked",Snackbar.LENGTH_SHORT).show()
         Log.i(TAG,"in clickhandler")
-        var intent = Intent(this,MainActivity::class.java)
+        var intent = Intent(this, MainActivity::class.java)
         intent.putExtra("name","abdul")
         startActivity(intent)
 
@@ -60,7 +76,7 @@ class XmlActivity : AppCompatActivity() {
 
     fun getContact(view: View) {
         //xml activity is  a parent and contactactivity is the child
-        var cIntent = Intent(this,ContactActivity::class.java)
+        var cIntent = Intent(this, ContactActivity::class.java)
         startActivityForResult(cIntent,requestCodeContact)
     //in wa from the same activity you can go to diff  apps ie contacts/camera/location
         //when you return back, how can wa activity differentiate b/w what kind of data you're bringing.. you return back to the same point ie line no 64
@@ -82,6 +98,27 @@ class XmlActivity : AppCompatActivity() {
     fun launchCalendar(view: View) {
         var calIntent = Intent("ineed.water")
         startActivity(calIntent)
+    }
+
+    fun startAidlservice(view: View) {
+            //aidl-4
+        val pack = IMyAidlInterface::class.java.`package`
+        intent.setPackage(pack.toString())
+        intent.setPackage(pack.name)
+        bindService(intent,connection, BIND_AUTO_CREATE)
+    }
+
+    val connection = object :ServiceConnection{
+        override fun onServiceConnected(p0: ComponentName?, aidlBinder: IBinder?) {
+            Log.i("clientActivity", "client activity  connected to service")
+            val iRemoteService = IMyAidlInterface.Stub.asInterface(aidlBinder)
+           val result =  iRemoteService.add(10,15)
+            Log.i("clientActivity","result is--$result")
+        }
+
+        override fun onServiceDisconnected(p0: ComponentName?) {
+            TODO("Not yet implemented")
+        }
     }
 }
 

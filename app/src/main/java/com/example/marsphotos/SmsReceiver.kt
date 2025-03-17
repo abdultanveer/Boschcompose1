@@ -1,4 +1,4 @@
-package com.example.boschcompose1
+package com.example.marsphotos
 
 import android.content.BroadcastReceiver
 import android.content.Context

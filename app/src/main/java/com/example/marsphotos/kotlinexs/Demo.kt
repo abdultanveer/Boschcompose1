@@ -1,4 +1,4 @@
-package com.example.boschcompose1.kotlinexs
+package com.example.marsphotos.kotlinexs
 
 //https://play.kotlinlang.org/byExample/01_introduction/02_Functions
 fun main() {

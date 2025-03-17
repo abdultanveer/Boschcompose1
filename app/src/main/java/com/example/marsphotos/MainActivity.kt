@@ -1,4 +1,4 @@
-package com.example.boschcompose1
+package com.example.marsphotos
 
 import android.content.Intent
 import android.os.Bundle
@@ -28,7 +28,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.boschcompose1.ui.theme.Boschcompose1Theme
+import com.example.boschcompose1.R
+import com.example.marsphotos.ui.theme.Boschcompose1Theme
 
 //main
 class MainActivity : ComponentActivity() {

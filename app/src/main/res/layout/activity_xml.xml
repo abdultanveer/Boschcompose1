@@ -5,7 +5,7 @@
     android:id="@+id/conslayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".XmlActivity">
+    tools:context="com.example.marsphotos.XmlActivity">
 
     <Button
         android:id="@+id/btnLogin"
@@ -54,10 +54,20 @@
 
     <Button
         android:id="@+id/button4"
-        android:onClick="launchCalendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="launchCalendar"
         android:text="calendar"
         tools:layout_editor_absoluteX="243dp"
         tools:layout_editor_absoluteY="168dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:onClick="startAidlservice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="253dp"
+        android:text="aidl"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="305dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

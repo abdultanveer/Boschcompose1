@@ -1,4 +1,4 @@
-package com.example.boschcompose1.ui.dashboard
+package com.example.marsphotos.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
