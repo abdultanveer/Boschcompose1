@@ -49,15 +49,14 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
-    val image = painterResource(R.drawable.androidparty)
     //trailing lamda syntax
     Box(modifier) {
-        Image(painter = image,
-            contentDescription = "birthday greeting image",
-            contentScale = ContentScale.Crop,
-            alpha = 0.5F
-
-        )
+//        Image(painter = image,
+//            contentDescription = "birthday greeting image",
+//            contentScale = ContentScale.Crop,
+//            alpha = 0.5F
+//
+//        )
         GreetingText(
             message = message,
             from = from,
